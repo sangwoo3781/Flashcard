@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Web単語帳 - マイページ</title>
+</head>
+<body>
+    <h1><%= name %>さんのマイページ</h1>
+    <p>こんにちは、<%= name %>さん！</p>
+    <ul>
+        <li><a href="words.html">登録単語一覧</a></li>
+        <li><a href="questions.html">ランダム学習</a></li>
+    </ul>
+
+    <form method="post">
+        <fieldset>
+            <legend>単語を登録</legend>
+
+            <label for="english">
+                <p>英語</p>
+            </label>
+            <input type="text" name="english" value="<%= newWord.english %>"><span><%= errorMsgs.english %></span>
+            
+            <label for="japanese">
+                <p>日本語</p>
+            </label>
+            <input type="text" name="japanese" value="<%= newWord.japanese %>"><span><%= errorMsgs.japanese %></span>
+
+            <label for="comment">
+                <p>コメント</p>
+            </label>
+            <textarea name="comment" cols="40" rows="4"><%= newWord.comment %></textarea>
+            <div id="submit">
+                <input type="submit" value="送信">
+            </div>
+        </fieldset>
+    </form>
+    <p>ユーザーID : <%= userId %></p>
+    <p>お名前 : <%= name %></p>
+    <p>メールアドレス : <%= email %></p>
+    <ul>
+        <li><a href="/logout">ログアウト</a></li>
+        <li><a href="/unsubscribe">退会する</a></li>
+        <li><a href="/">トップ</a></li>
+    </ul>
+</body>
+
+</html>

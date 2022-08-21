@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Web単語帳 - ランダム学習</title>
+</head>
+
+<body>
+    <p class="back"><a href="index.html">終了</a></p>
+    <div class="buttons">
+        <button id="prev">戻る</button>
+        <button id="show">答えを表示</button>
+        <button id="next">進む</button>
+    </div>
+    <dl class="questions-word">
+        <% for (let i = 0; i < documents.length; i++) { %>
+        <div class="word">
+            <dt><%= documents[i].english %></dt>
+            <dd><%= documents[i].japanese %></dd>
+            <dd><%= documents[i].comment %></dd>
+        </div>
+        <% } %>
+    </dl>
+    <script type="text/javascript" src="../js/switching_the_display.js"></script>
+</body>
+
+</html>
