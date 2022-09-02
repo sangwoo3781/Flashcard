@@ -32,7 +32,7 @@ const UNSUBSCRIBE = require("./unsubscribe.js");
 const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("static", express.static('public'));
+app.use(express.static('public'));
 app.use(session(sessionSettings));
 
 /***********

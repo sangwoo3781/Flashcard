@@ -120,22 +120,23 @@ router.get("/words", (req, res, next) => {
             const query = { userId: userId };
             const userDocument = await userCollection.findOne(query);
             if (userDocument === null) throw new Error("user data not found.");
-            
-            // sort alphabetically
-            let words = userDocument.words.sort((a, b) => {
-                a = a.english.toString().toLowerCase();
-                b = b.english.toString().toLowerCase();
-                if (a < b) return -1;
-                else if (a > b) return 1;
-                return 0;
-            });
+
+            let words = userDocument.words;
             if (!words) {
                 return res.sendFile("/home/ec2-user/environment/app/html/nowords.html");
             }
             else {
-                // ejs render
+                // sort alphabetically
+                words = userDocument.words.sort((a, b) => {
+                    a = a.english.toString().toLowerCase();
+                    b = b.english.toString().toLowerCase();
+                    if (a < b) return -1;
+                    else if (a > b) return 1;
+                    return 0;
+                });
                 return res.render("./words.ejs", { words: words });
             }
+
         }
         catch (e) {
             next(e);
@@ -144,6 +145,49 @@ router.get("/words", (req, res, next) => {
             client.close();
         }
     })();
+});
+
+router.get("/questions", (req, res, next) => {
+
+    (async () => {
+        try {
+            // ログインチェック
+            if (!req.session.userId) return res.redirect("/login");
+
+            // get user data
+            await client.connect();
+            const db = client.db(settings.mongoDbName);
+            const userCollection = db.collection(settings.usersCollectionName);
+
+            const userId = req.session.userId;
+            const query = { userId: userId };
+            const userDocument = await userCollection.findOne(query);
+            if (userDocument === null) throw new Error("user data not found.");
+
+            let words = userDocument.words;
+            if (!words) {
+                return res.sendFile("/home/ec2-user/environment/app/html/nowords.html");
+            }
+            else {
+                // random sort
+                for (let i = words.length - 1; i >= 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [words[i], words[j]] = [words[j], words[i]];
+                }
+                return res.render("./questions.ejs", { words: words });
+            }
+
+
+
+        }
+        catch (e) {
+            next(e);
+        }
+        finally {
+
+        }
+    })();
+
 });
 
 module.exports = router;
