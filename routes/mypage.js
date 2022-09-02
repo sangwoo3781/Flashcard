@@ -105,5 +105,45 @@ router.post("/", (req, res, next) => {
     })();
 });
 
-module.exports = router;
+router.get("/words", (req, res, next) => {
+    (async () => {
+        try {
+            // ログインチェック
+            if (!req.session.userId) return res.redirect("/login");
 
+            // get user data
+            await client.connect();
+            const db = client.db(settings.mongoDbName);
+            const userCollection = db.collection(settings.usersCollectionName);
+
+            const userId = req.session.userId;
+            const query = { userId: userId };
+            const userDocument = await userCollection.findOne(query);
+            if (userDocument === null) throw new Error("user data not found.");
+            
+            // sort alphabetically
+            let words = userDocument.words.sort((a, b) => {
+                a = a.english.toString().toLowerCase();
+                b = b.english.toString().toLowerCase();
+                if (a < b) return -1;
+                else if (a > b) return 1;
+                return 0;
+            });
+            if (!words) {
+                return res.sendFile("/home/ec2-user/environment/app/html/nowords.html");
+            }
+            else {
+                // ejs render
+                return res.render("./words.ejs", { words: words });
+            }
+        }
+        catch (e) {
+            next(e);
+        }
+        finally {
+            client.close();
+        }
+    })();
+});
+
+module.exports = router;
