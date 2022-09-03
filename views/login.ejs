@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Web単語帳 - ログイン</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FLASH CARD</title>
 </head>
 <body>
-    <h1>ログイン</h1>
+    <h1>Login</h1>
     <form method="POST">
-        <p>メールアドレス: <input type="text" name="email" value="<%= userValues.email %>"><%= errorMsgs.email %></p>
-        <p>パスワード: <input type="password" name="password" value="<%= userValues.password %>"><%= errorMsgs.password %></p>
-        <input type="submit" value="送信">
+        <p>Email :</p>
+        <p class="form-values"><input type="text" name="email" value="<%= userValues.email %>"><%= errorMsgs.email %></p>
+        <p>Password :</p>
+        <p class="form-values"><input type="password" name="password" value="<%= userValues.password %>"><%= errorMsgs.password %></p>
+        <div id="submit">
+            <input type="submit" value="Send">
+        </div>
     </form>
     <ul>
-        <li><a href="/signup">新規登録</a></li>
-        <li><a href="/">トップ</a></li>
+        <li><a href="/signup">Signup</a></li>
+        <li><a href="/">Top</a></li>
     </ul>
 </body>
 </html>

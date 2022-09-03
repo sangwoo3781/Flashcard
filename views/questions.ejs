@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/normalize.css">
     <link rel='stylesheet' href='/css/style.css'/>
-    <title>Web単語帳 - ランダム学習</title>
+    <title>FLASH CARD - Practice</title>
 </head>
 
 <body>
     <ul>
-        <li><a href="/">トップ</a></li>
-        <li><a href="/mypage">マイページ</a></li>
-        <li><a href="/mypage/words">単語一覧</a></li>
+        <li><a href="/">Top</a></li>
+        <li><a href="/mypage">Mypage</a></li>
+        <li><a href="/mypage/words">Word list</a></li>
     </ul>
     <div class="buttons">
-        <button id="prev">戻る</button>
-        <button id="show">答えを表示</button>
-        <button id="next">進む</button>
+        <button id="prev">Back</button>
+        <button id="show">Show answer</button>
+        <button id="next">Next</button>
     </div>
     <dl class="questions-word">
         <% for (let i = 0; i < words.length; i++) { %>

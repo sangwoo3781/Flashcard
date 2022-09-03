@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Web単語帳 - 退会</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FLASH CARD - Unsubscribe</title>
 </head>
 
 <body>
-    <p>退会すると、お客様情報と単語リストのデータが全て失われます。本当に退会しますか？</p>
-    <form method="POST">
-        <input type="submit" value="退会する">
-    </form>
-    <p><a href="/mypage">マイページへ戻る</a></p>
+    <div class="server-messages">
+        <p>If you unsubscribe, all customer information and word list data will be lost. Are you sure you want to withdraw?</p>
+        <form method="POST">
+            <input type="submit" value="Unsubscribe">
+        </form>
+        <p><a href="/mypage">Back to mypage</a></p>
+    </div>
+
 </body>
 
 </html>

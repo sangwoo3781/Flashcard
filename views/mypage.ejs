@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Web単語帳 - マイページ</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>FLASH CARD - Mypage</title>
 </head>
 <body>
-    <h1><%= name %>さんのマイページ</h1>
-    <p>こんにちは、<%= name %>さん！</p>
+    <h1>FLASH CARD</h1>
     <ul>
-        <li><a href="/mypage/words">登録単語一覧</a></li>
-        <li><a href="/mypage/questions">ランダム学習</a></li>
+        <li><a href="/mypage/words">Word List</a></li>
+        <li><a href="/mypage/questions">Start Practice</a></li>
     </ul>
-
     <form method="post">
         <fieldset>
-            <legend>単語を登録</legend>
+            <legend>Create</legend>
 
             <label for="english">
-                <p>英語</p>
+                <p>English</p>
             </label>
             <input type="text" name="english" value="<%= newWord.english %>"><span><%= errorMsgs.english %></span>
             
             <label for="japanese">
-                <p>日本語</p>
+                <p>Japanese</p>
             </label>
             <input type="text" name="japanese" value="<%= newWord.japanese %>"><span><%= errorMsgs.japanese %></span>
 
             <label for="comment">
-                <p>コメント</p>
+                <p>Comment</p>
             </label>
             <textarea name="comment" cols="40" rows="4"><%= newWord.comment %></textarea>
             <div id="submit">
-                <input type="submit" value="送信">
+                <input type="submit" value="Send">
             </div>
         </fieldset>
     </form>
-    <p>ユーザーID : <%= userId %></p>
-    <p>お名前 : <%= name %></p>
-    <p>メールアドレス : <%= email %></p>
+    <p>User ID : <%= userId %></p>
+    <p>Name : <%= name %></p>
+    <p>Email : <%= email %></p>
     <ul>
-        <li><a href="/logout">ログアウト</a></li>
-        <li><a href="/unsubscribe">退会する</a></li>
-        <li><a href="/">トップ</a></li>
+        <li><a href="/logout">Logout</a></li>
+        <li><a href="/unsubscribe">Unsubscribe</a></li>
+        <li><a href="/">Top</a></li>
     </ul>
 </body>
 

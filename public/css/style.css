@@ -111,3 +111,12 @@ dd {
 .success_message {
   text-align: center;
 }
+
+.form-values {
+  margin-left: 80px;
+  padding-top: 0px;
+}
+
+.server-messages {
+  text-align: center;
+}
