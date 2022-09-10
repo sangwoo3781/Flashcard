@@ -10,9 +10,11 @@
     <h1>Login</h1>
     <form method="POST">
         <p>Email :</p>
-        <p class="form-values"><input type="text" name="email" value="<%= userValues.email %>"><%= errorMsgs.email %></p>
+        <p class="form-values"><input type="text" name="email" value="<%= userValues.email %>"></p>
+        <span class="err-msg"><%= errorMsgs.email %></span>
         <p>Password :</p>
-        <p class="form-values"><input type="password" name="password" value="<%= userValues.password %>"><%= errorMsgs.password %></p>
+        <p class="form-values"><input type="password" name="password" value="<%= userValues.password %>"></p>
+        <span class="err-msg"><%= errorMsgs.password %></span>
         <div id="submit">
             <input type="submit" value="Send">
         </div>

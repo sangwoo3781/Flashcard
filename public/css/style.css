@@ -120,3 +120,12 @@ dd {
 .server-messages {
   text-align: center;
 }
+
+.err-msg {
+  margin-left: 80px;
+  font-size: 0.8em;
+}
+
+.err-msg2 {
+  font-size: 0.8em;
+}

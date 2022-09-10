@@ -10,11 +10,14 @@
     <h1>Signup</h1>
     <form method="POST">
         <p>Name :</p>
-        <p class="form-values"><input type="text" name="name" value="<%= userValues.name %>"><%= errorMsgs.name %></p>
+        <p class="form-values"><input type="text" name="name" value="<%= userValues.name %>"></p>
+        <span class="err-msg"><%= errorMsgs.name %></span>
         <p>Email :</p>
-        <p class="form-values"><input type="text" name="email" value="<%= userValues.email %>"><%= errorMsgs.email %></p>
+        <p class="form-values"><input type="text" name="email" value="<%= userValues.email %>"></p>
+        <span class="err-msg"><%= errorMsgs.email %></span>
         <p>Password :</p>
-        <p class="form-values"><input type="password" name="password" value="<%= userValues.password %>"><%= errorMsgs.password %></p>
+        <p class="form-values"><input type="password" name="password" value="<%= userValues.password %>"></p>
+        <span class="err-msg"><%= errorMsgs.password %></span>
         <div id="submit">
             <input type="submit" value="Send">
         </div>

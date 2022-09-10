@@ -40,20 +40,20 @@ router.post("/", (req, res, next) => {
     // add new word
     (async () => {
         // get posted data
-        const newWord = {
-            english: req.body.english || "",
-            japanese: req.body.japanese || "",
-            comment: req.body.comment || "",
-        };
-        console.log(newWord.comment);
-        const errorMsgs = {
-            english: (newWord.english) ? "" : "英語を入力してください。",
-            japanese: (newWord.japanese) ? "" : "日本語を入力してください。",
-        };
-        if (errorMsgs.english !== "" || errorMsgs.japanese !== "") {
-            res.render("./mypage.ejs", { newWord: newWord, errorMsgs: errorMsgs });
-            return;
-        }
+        // const newWord = {
+        //     english: req.body.english || "",
+        //     japanese: req.body.japanese || "",
+        //     comment: req.body.comment || "",
+        // };
+        // console.log(newWord.comment);
+        // const errorMsgs = {
+        //     english: (newWord.english) ? "" : "英語を入力してください。",
+        //     japanese: (newWord.japanese) ? "" : "日本語を入力してください。",
+        // };
+        // if (errorMsgs.english !== "" || errorMsgs.japanese !== "") {
+        //     res.render("./mypage.ejs", { userId: userId, name: name, email: email, newWord: newWord, errorMsgs: errorMsgs });
+        //     return;
+        // }
         try {
             // connect db
             await client.connect();
@@ -65,6 +65,25 @@ router.post("/", (req, res, next) => {
             let query = { userId: userId };
             const userDocument = await userCollection.findOne(query);
             if (userDocument === null) throw new Error("user data not found.");
+            const name = userDocument.name;
+            const email = userDocument.email;
+            
+            // check input data
+            const newWord = {
+                english: req.body.english || "",
+                japanese: req.body.japanese || "",
+                comment: req.body.comment || "",
+            };
+            console.log(newWord.comment);
+            const errorMsgs = {
+                english: (newWord.english) ? "" : "英語を入力してください。",
+                japanese: (newWord.japanese) ? "" : "日本語を入力してください。",
+            };
+
+            if (errorMsgs.english !== "" || errorMsgs.japanese !== "") {
+                res.render("./mypage.ejs", { userId: userId, name: name, email: email, newWord: newWord, errorMsgs: errorMsgs });
+                return;
+            }
 
             // check exist word
             let existWord = null;
@@ -77,8 +96,8 @@ router.post("/", (req, res, next) => {
                 });
             }
             if (existWord !== null) {
-                const name = userDocument.name;
-                const email = userDocument.email;
+                // const name = userDocument.name;
+                // const email = userDocument.email;
                 errorMsgs.english = "この単語はすでに登録されています。";
                 console.log(newWord);
                 return res.render("./mypage.ejs", { userId: userId, name: name, email: email, newWord: newWord, errorMsgs: errorMsgs });
